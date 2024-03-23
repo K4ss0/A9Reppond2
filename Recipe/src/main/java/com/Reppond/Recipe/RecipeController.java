@@ -1,41 +1,80 @@
 package com.Reppond.Recipe;
 
-import java.util.List;
-//import java.util.stream.Collectors;
-
-//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class RecipeController {
 
-//    @GetMapping("/gluten-free")
-//    public List<Recipe> getGlutenFreeRecipes() {
-//        List<Recipe> allRecipes = RecipeParser.getRecipesList();
-//        return allRecipes.stream().filter(Recipe::getGlutenFree).collect(Collectors.toList());
-//    }
-//
-//    @GetMapping("/vegan")
-//    public List<Recipe> getVeganRecipes() {
-//        List<Recipe> allRecipes = RecipeParser.getRecipesList();
-//        return allRecipes.stream().filter(Recipe::getVegan).collect(Collectors.toList());
-//    }
-//
-//    @GetMapping("/vegan-and-gluten-free")
-//    public List<Recipe> getVeganAndGlutenFreeRecipes() {
-//        List<Recipe> allRecipes = RecipeParser.getRecipesList();
-//        return allRecipes.stream().filter(recipe -> recipe.getVegan() && recipe.getGlutenFree()).collect(Collectors.toList());
-//    }
-//
-//    @GetMapping("/vegetarian")
-//    public List<Recipe> getVegetarianRecipes() {
-//        List<Recipe> allRecipes = RecipeParser.getRecipesList();
-//        return allRecipes.stream().filter(Recipe::getVegetarian).collect(Collectors.toList());
-//    }
+	@GetMapping("/all-recipes")
+	public String getAllRecipes() {
+	    List<Map<String, String>> recipes = RecipeParser.getRecipesList();
+	    StringBuilder response = new StringBuilder();
+	    for (Map<String, String> recipeMap : recipes) {
+	        response.append("Recipe:\n");
+	        for (Map.Entry<String, String> entry : recipeMap.entrySet()) {
+	            response.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+	        }
+	        response.append("\n");
+	    }
+	    return response.toString();
+	}
+	
+	@GetMapping("/gluten-free")
+	public String getGlutenFreeRecipes() {
+	    List<Map<String, String>> recipes = RecipeParser.getRecipesList();
+	    StringBuilder response = new StringBuilder();
+	    for (Map<String, String> recipeMap : recipes) {
+	        if (Boolean.parseBoolean(recipeMap.get("Gluten Free"))) {
+	            appendRecipeInfo(recipeMap, response);
+	        }
+	    }
+	    return response.toString();
+	}
 
-    @GetMapping("/all-recipes")
-    public List<Recipe> getAllRecipes() {
-        return RecipeParser.getRecipesList();
-    }
+	@GetMapping("/vegan")
+	public String getVeganRecipes() {
+	    List<Map<String, String>> recipes = RecipeParser.getRecipesList();
+	    StringBuilder response = new StringBuilder();
+	    for (Map<String, String> recipeMap : recipes) {
+	    	System.out.println("Vegan Value: " + recipeMap.get("Vegan"));
+	        if (Boolean.parseBoolean(recipeMap.get("Vegan"))) {
+	            appendRecipeInfo(recipeMap, response);
+	        }
+	    }
+	    return response.toString();
+	}
+
+	@GetMapping("/vegan-and-gluten-free")
+	public String getVeganAndGlutenFreeRecipes() {
+	    List<Map<String, String>> recipes = RecipeParser.getRecipesList();
+	    StringBuilder response = new StringBuilder();
+	    for (Map<String, String> recipeMap : recipes) {
+	        if (Boolean.parseBoolean(recipeMap.get("Vegan")) && Boolean.parseBoolean(recipeMap.get("Gluten Free"))) {
+	            appendRecipeInfo(recipeMap, response);
+	        }
+	    }
+	    return response.toString();
+	}
+
+	@GetMapping("/vegetarian")
+	public String getVegetarianRecipes() {
+	    List<Map<String, String>> recipes = RecipeParser.getRecipesList();
+	    StringBuilder response = new StringBuilder();
+	    for (Map<String, String> recipeMap : recipes) {
+	        if (Boolean.parseBoolean(recipeMap.get("Vegetarian"))) {
+	            appendRecipeInfo(recipeMap, response);
+	        }
+	    }
+	    return response.toString();
+	}
+
+	private void appendRecipeInfo(Map<String, String> recipeMap, StringBuilder response) {
+	    response.append("Title: ").append(recipeMap.get("Title")).append("\n")
+	            .append("Instructions: ").append(recipeMap.get("Instructions")).append("\n\n");
+	}
+
 }
