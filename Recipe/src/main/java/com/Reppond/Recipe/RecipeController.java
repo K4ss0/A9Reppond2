@@ -7,26 +7,93 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RecipeController {
 
-	 @GetMapping("/all-recipes")
-	    public String getAllRecipes() {
-	        List<Recipe> recipes = RecipeParser.parseRecipes();
-	        StringBuilder response = new StringBuilder();
+	@GetMapping("/all-recipes")
+	public String getAllRecipes() {
+	    List<Recipe> recipes = RecipeParser.parseRecipes();
+	    StringBuilder response = new StringBuilder();
 
-	        for (Recipe recipe : recipes) {
-	            response.append("Cooking Minutes: ").append(recipe.getCookingMinutes()).append("\n");
-	            response.append("Dairy Free: ").append(recipe.getDairyFree()).append("\n");
-	            response.append("Gluten Free: ").append(recipe.getGlutenFree()).append("\n");
-	            response.append("Instructions: ").append(recipe.getInstructions()).append("\n");
-	            response.append("Preparation Minutes: ").append(recipe.getPreparationMinutes()).append("\n");
-	            response.append("Price Per Serving: ").append(recipe.getPricePerServing()).append("\n");
-	            response.append("Ready In Minutes: ").append(recipe.getReadyInMinutes()).append("\n");
-	            response.append("Servings: ").append(recipe.getServings()).append("\n");
-	            response.append("Spoonacular Score: ").append(recipe.getSpoonacularScore()).append("\n");
-	            response.append("Title: ").append(recipe.getTitle()).append("\n");
-	            response.append("Vegan: ").append(recipe.getVegan()).append("\n");
-	            response.append("Vegetarian: ").append(recipe.getVegetarian()).append("\n\n");
-	        }
+	    response.append("<html><body>");
+	    response.append("<h1>All Recipes</h1>");
 
-	        return response.toString();
+	    for (Recipe recipe : recipes) {
+	        response.append(HtmlFormatter.formatRecipe(recipe));
 	    }
+
+	    response.append("</body></html>");
+
+	    return response.toString();
 	}
+
+	@GetMapping("/vegan-recipes")
+	public String getVeganRecipes() {
+	    List<Recipe> recipes = RecipeParser.parseRecipes();
+	    StringBuilder response = new StringBuilder();
+
+	    response.append("<html><body>");
+	    response.append("<h1>Vegan Recipes</h1>");
+
+	    for (Recipe recipe : recipes) {
+	        if (recipe.getVegan()) {
+	            response.append(HtmlFormatter.formatRecipe(recipe));
+	        }
+	    }
+
+	    response.append("</body></html>");
+
+	    return response.toString();
+	}
+	@GetMapping("/vegetarian-recipes")
+	public String getVegetarianRecipes() {
+	    List<Recipe> recipes = RecipeParser.parseRecipes();
+	    StringBuilder response = new StringBuilder();
+
+	    response.append("<html><body>");
+	    response.append("<h1>Vegetarian Recipes</h1>");
+
+	    for (Recipe recipe : recipes) {
+	        if (recipe.getVegan()) {
+	            response.append(HtmlFormatter.formatRecipe(recipe));
+	        }
+	    }
+
+	    response.append("</body></html>");
+
+	    return response.toString();
+	}
+	@GetMapping("/gluten-free-recipes")
+	public String getGlutenFreeRecipes() {
+	    List<Recipe> recipes = RecipeParser.parseRecipes();
+	    StringBuilder response = new StringBuilder();
+
+	    response.append("<html><body>");
+	    response.append("<h1>Gluten-Free Recipes</h1>");
+
+	    for (Recipe recipe : recipes) {
+	        if (recipe.getVegan()) {
+	            response.append(HtmlFormatter.formatRecipe(recipe));
+	        }
+	    }
+
+	    response.append("</body></html>");
+
+	    return response.toString();
+	}
+	@GetMapping("/vegan-gluten-free-recipes")
+	public String getVeganAndGlutenFreeRecipes() {
+	    List<Recipe> recipes = RecipeParser.parseRecipes();
+	    StringBuilder response = new StringBuilder();
+
+	    response.append("<html><body>");
+	    response.append("<h1>Vegan and Gluten-Free Recipes</h1>");
+
+	    for (Recipe recipe : recipes) {
+	        if (recipe.getVegan() && recipe.getGlutenFree()) {
+	            response.append(HtmlFormatter.formatRecipe(recipe));
+	        }
+	    }
+
+	    response.append("</body></html>");
+
+	    return response.toString();
+	}
+}

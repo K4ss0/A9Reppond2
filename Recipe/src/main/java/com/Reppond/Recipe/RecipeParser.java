@@ -16,7 +16,7 @@ public class RecipeParser {
 		List<Recipe> recipesList = new ArrayList<>();
 
 		try (FileReader input = new FileReader(FILE_PATH);
-				CSVParser parser = CSVFormat.DEFAULT.withHeader().withIgnoreSurroundingSpaces().parse(input)) {
+				CSVParser parser = CSVFormat.DEFAULT.withHeader().withIgnoreSurroundingSpaces().withEscape('\\').parse(input)) {
 			
 			System.out.println("Headers:");
             for (String header : parser.getHeaderMap().keySet()) {
