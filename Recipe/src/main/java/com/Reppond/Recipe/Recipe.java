@@ -1,129 +1,145 @@
 package com.Reppond.Recipe;
 
 public class Recipe {
-    private Integer cookingMinutes;
-    private Boolean dairyFree;
-    private Boolean glutenFree;
-    private String instructions;
-    private Double preparationMinutes;
-    private Double pricePerServing;
-    private Integer readyInMinutes;
-    private Integer servings;
-    private Double spoonacularScore;
-    private String title;
-    private Boolean vegan;
-    private Boolean vegetarian;
 
-    public Recipe(int cookingMinutes, boolean dairyFree, boolean glutenFree, String instructions,
-                  double preparationMinutes, double pricePerServing, int readyInMinutes, int servings,
-                  double spoonacularScore, String title, boolean vegan, boolean vegetarian) {
-        this.cookingMinutes = cookingMinutes;
-        this.dairyFree = dairyFree;
-        this.glutenFree = glutenFree;
-        this.instructions = instructions;
-        this.preparationMinutes = preparationMinutes;
-        this.pricePerServing = pricePerServing;
-        this.readyInMinutes = readyInMinutes;
-        this.servings = servings;
-        this.spoonacularScore = spoonacularScore;
-        this.title = title;
-        this.vegan = vegan;
-        this.vegetarian = vegetarian;
-    }
+	private Integer cookingMinutes;
 
-    public Integer getCookingMinutes() {
-        return cookingMinutes;
-    }
+	private Boolean dairyFree;
 
-    public void setCookingMinutes(Integer cookingMinutes) {
-        this.cookingMinutes = cookingMinutes;
-    }
+	private Boolean glutenFree;
 
-    public Boolean getDairyFree() {
-        return dairyFree;
-    }
+	private String instructions;
 
-    public void setDairyFree(Boolean dairyFree) {
-        this.dairyFree = dairyFree;
-    }
+	private Double preparationMinutes;
 
-    public Boolean getGlutenFree() {
-        return glutenFree;
-    }
+	private Double pricePerServing;
 
-    public void setGlutenFree(Boolean glutenFree) {
-        this.glutenFree = glutenFree;
-    }
+	private Integer readyInMinutes;
 
-    public String getInstructions() {
-        return instructions;
-    }
+	private Integer servings;
 
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
-    }
+	private Double spoonacularScore;
 
-    public Double getPreparationMinutes() {
-        return preparationMinutes;
-    }
+	private String title;
 
-    public void setPreparationMinutes(Double preparationMinutes) {
-        this.preparationMinutes = preparationMinutes;
-    }
+	private Boolean vegan;
 
-    public Double getPricePerServing() {
-        return pricePerServing;
-    }
+	private Boolean vegetarian;
 
-    public void setPricePerServing(Double pricePerServing) {
-        this.pricePerServing = pricePerServing;
-    }
+	public Recipe(int cookingMinutes, boolean dairyFree, boolean glutenFree, String instructions,
+			double preparationMinutes, double pricePerServing, int readyInMinutes, int servings,
+			double spoonacularScore, String title, boolean vegan, boolean vegetarian) {
+		this.cookingMinutes = cookingMinutes;
+		this.dairyFree = dairyFree;
+		this.glutenFree = glutenFree;
+		this.instructions = instructions;
+		this.preparationMinutes = preparationMinutes;
+		this.pricePerServing = pricePerServing;
+		this.readyInMinutes = readyInMinutes;
+		this.servings = servings;
+		this.spoonacularScore = spoonacularScore;
+		this.title = title;
+		this.vegan = vegan;
+		this.vegetarian = vegetarian;
+	}
 
-    public Integer getReadyInMinutes() {
-        return readyInMinutes;
-    }
+	public Recipe() {
+	}
 
-    public void setReadyInMinutes(Integer readyInMinutes) {
-        this.readyInMinutes = readyInMinutes;
-    }
+	public Integer getCookingMinutes() {
+		return cookingMinutes;
+	}
 
-    public Integer getServings() {
-        return servings;
-    }
+	public void setCookingMinutes(Integer cookingMinutes) {
+		this.cookingMinutes = cookingMinutes;
+	}
 
-    public void setServings(Integer servings) {
-        this.servings = servings;
-    }
+	public Boolean getDairyFree() {
+		return dairyFree;
+	}
 
-    public Double getSpoonacularScore() {
-        return spoonacularScore;
-    }
+	public void setDairyFree(Boolean dairyFree) {
+		this.dairyFree = dairyFree;
+	}
 
-    public void setSpoonacularScore(Double spoonacularScore) {
-        this.spoonacularScore = spoonacularScore;
-    }
+	public Boolean getGlutenFree() {
+		return glutenFree;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setGlutenFree(Boolean glutenFree) {
+		this.glutenFree = glutenFree;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getInstructions() {
+		return instructions;
+	}
 
-    public Boolean getVegan() {
-        return vegan;
-    }
+	public void setInstructions(String instructions) {
+		this.instructions = instructions;
+	}
 
-    public void setVegan(Boolean vegan) {
-        this.vegan = vegan;
-    }
+	public Double getPreparationMinutes() {
+		return preparationMinutes;
+	}
 
-    public Boolean getVegetarian() {
-        return vegetarian;
-    }
+	public void setPreparationMinutes(Double preparationMinutes) {
+		this.preparationMinutes = preparationMinutes;
+	}
 
-    public void setVegetarian(Boolean vegetarian) {
-        this.vegetarian = vegetarian;
-    }
+	public Double getPricePerServing() {
+		return pricePerServing;
+	}
+
+	public void setPricePerServing(Double pricePerServing) {
+		this.pricePerServing = pricePerServing;
+	}
+
+	public Integer getReadyInMinutes() {
+		return readyInMinutes;
+	}
+
+	public void setReadyInMinutes(Integer readyInMinutes) {
+		this.readyInMinutes = readyInMinutes;
+	}
+
+	public Integer getServings() {
+		return servings;
+	}
+
+	public void setServings(Integer servings) {
+		this.servings = servings;
+	}
+
+	public Double getSpoonacularScore() {
+		return spoonacularScore;
+	}
+
+	public void setSpoonacularScore(Double spoonacularScore) {
+		this.spoonacularScore = spoonacularScore;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Boolean getVegan() {
+		return vegan;
+	}
+
+	public void setVegan(Boolean vegan) {
+		this.vegan = vegan;
+	}
+
+	public Boolean getVegetarian() {
+		return vegetarian;
+	}
+
+	public void setVegetarian(Boolean vegetarian) {
+		this.vegetarian = vegetarian;
+	}
+
 }

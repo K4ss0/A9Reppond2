@@ -3,42 +3,52 @@ package com.Reppond.Recipe;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class RecipeParser {
 
-    private static final String FILE_PATH = "recipes.txt";
+	private static final String FILE_PATH = "recipes.txt";
 
-    public static List<Map<String, String>> getRecipesList() {
-        List<Map<String, String>> recipesList = new ArrayList<>();
+	public static List<Recipe> parseRecipes() {
+		List<Recipe> recipesList = new ArrayList<>();
 
-        try (FileReader input = new FileReader(FILE_PATH);
-             CSVParser parser = CSVFormat.EXCEL.withHeader().parse(input)) {
-
-        	System.out.println("Headers:");
+		try (FileReader input = new FileReader(FILE_PATH);
+				CSVParser parser = CSVFormat.DEFAULT.withHeader().withIgnoreSurroundingSpaces().parse(input)) {
+			
+			System.out.println("Headers:");
             for (String header : parser.getHeaderMap().keySet()) {
                 System.out.println(header);
             }
             System.out.println();
-
-
+            
             for (CSVRecord record : parser) {
-                Map<String, String> recipeMap = new HashMap<>();
+                System.out.println("Record:");
                 for (String header : parser.getHeaderMap().keySet()) {
-                    recipeMap.put(header, record.get(header));
+                    System.out.println(header + ": " + record.get(header));
                 }
-                recipesList.add(recipeMap);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+				Recipe recipe = new Recipe();
+				recipe.setCookingMinutes(Integer.parseInt(record.get("Cooking Minutes")));
+				recipe.setDairyFree(Boolean.parseBoolean(record.get("Dairy Free")));
+				recipe.setGlutenFree(Boolean.parseBoolean(record.get("Gluten Free")));
+				recipe.setInstructions(record.get("Instructions"));
+				recipe.setPreparationMinutes(Double.parseDouble(record.get("Preparation Minutes")));
+				recipe.setPricePerServing(Double.parseDouble(record.get("Price Per Serving")));
+				recipe.setReadyInMinutes(Integer.parseInt(record.get("Ready In Minutes")));
+				recipe.setServings(Integer.parseInt(record.get("Servings")));
+				recipe.setSpoonacularScore(Double.parseDouble(record.get("Spoonacular Score")));
+				recipe.setTitle(record.get("Title"));
+				recipe.setVegan(Boolean.parseBoolean(record.get("Vegan")));
+				recipe.setVegetarian(Boolean.parseBoolean(record.get("Vegetarian")));
 
-        return recipesList;
-    }
+				recipesList.add(recipe);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return recipesList;
+	}
 }
